@@ -1,4 +1,4 @@
-#VRML_SIM R2023b utf8
+#VRML_SIM R2025a utf8
 
 EXTERNPROTO "../protos/Nao.proto"
 EXTERNPROTO "../protos/Observer.proto"
@@ -74,33 +74,38 @@ DirectionalLight {
   castShadows TRUE
 }
 DEF OBSERVER Observer {
-  controller "visual_tracking_supervisor"
-  controllerArgs ["--time" "60.0" "--bounds" "1.5" "4.0" "-3.0" "3.0"]
-  target "DUCK"
+  controllerArgs [
+    "--time"
+    "60.0"
+    "--bounds"
+    "1.5"
+    "4.0"
+    "-3.0"
+    "3.0"
+  ]
 }
 DEF NAO_ROBOT Nao {
-  supervisor TRUE
   translation 0 0 0.34
   rotation 0 1 0 0
   customColor [
     0.3 0.3 0.3
   ]
+  controller "visual_tracking"
+  supervisor TRUE
   cameraWidth 480
   cameraHeight 360
-  cameraNoise 0.0
-  controller "visual_tracking"
   headSlot [
-    DEF HEAD Transform {
+    DEF HEAD Pose {
       translation 0 0 -0.05353
       children [
         DEF CAM_TOP Solid {
           translation 0.05871 0 0.06364
-          rotation 0.573277 -0.573277 -0.585411 2.08235
+          rotation 0.5732772647455214 -0.5732772647455214 -0.5854112703491339 2.08235
           name "cam_top"
         }
         DEF CAM_BOTTOM Solid {
           translation 0.05071 0 0.01774
-          rotation 0.391132 -0.391132 -0.833085 1.75241
+          rotation 0.39113217599524247 -0.39113217599524247 -0.8330853748580954 1.75241
           name "cam_bottom"
         }
       ]
