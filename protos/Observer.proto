@@ -1,0 +1,26 @@
+#VRML_SIM R2022b utf8
+# documentation url: https://www.cyberbotics.com/doc/guide/nao
+# Generic model of Nao robot
+# Model designed by Cyberbotics Ltd. according to the online documentation provided by Aldebaran Robotics.
+# template language: javascript
+
+
+PROTO Observer [
+  field SFVec3f       translation           0 0 0.334                               # Is `Transform.translation`.
+  field SFRotation    rotation              0 0 1 0                                 # Is `Transform.rotation`.
+  field SFString      controller            "visual_tracking_supervisor"            # Is `Robot.controller`.
+  field MFString      controllerArgs        []                                      # Is `Robot.controllerArgs`.
+  field SFString      name                  "OBSERVER"                              # Is `Solid.name`.
+  field SFString      target                "DUCK"
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    name IS name
+    customData IS target
+    supervisor TRUE
+  }
+}

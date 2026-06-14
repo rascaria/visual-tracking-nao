@@ -1,0 +1,421 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "../protos/Nao.proto"
+EXTERNPROTO "../protos/Observer.proto"
+EXTERNPROTO "../protos/RobocupSoccerBall.proto"
+EXTERNPROTO "../protos/RobotstadiumGoal.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/traffic/protos/TrafficCone.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/plants/protos/PottedTree.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/Floor.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/Parquetry.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Wall.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/toys/protos/RubberDuck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/balls/protos/Ball.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/humans/pedestrian/protos/Pedestrian.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/tables/protos/Desk.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Door.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/apartment_structure/protos/Window.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/trees/protos/Forest.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/tools/protos/PaintBucket.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/fire_extinguisher/protos/FireExtinguisher.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/chairs/protos/OfficeChair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/plants/protos/BunchOfSunFlowers.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/school_furniture/protos/Blackboard.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/CardboardBox.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/chairs/protos/Chair.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/living_room_furniture/protos/Armchair.proto"
+
+WorldInfo {
+  info [
+    "Simulation of the Robocup Standard Platform League"
+  ]
+  title "Robocup"
+  basicTimeStep 10
+  FPS 30
+  contactProperties [
+    ContactProperties {
+      material1 "NAO foot material"
+      bounce 0.3
+      bounceVelocity 0
+      softERP 0.6
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.05069878493193622 -0.9829534698268596 -0.17672608568562254 5.715253940360556
+  position -2.710108696141056 -1.093688506805809 2.8849254887308873
+}
+Background {
+  skyColor [
+    0.2235294117647059 0.26666666666666666 0.20784313725490197
+  ]
+}
+DirectionalLight {
+  color 0.95 0.9 1
+  direction 1.2 1.2 -1
+  intensity 1.3
+  castShadows TRUE
+}
+DirectionalLight {
+  color 0.95 0.9 1
+  direction -1.2 1.2 -2
+  intensity 1.3
+  castShadows TRUE
+}
+DirectionalLight {
+  color 0.95 0.9 1
+  direction -1.2 -1.2 -1
+  intensity 1.3
+  castShadows TRUE
+}
+DirectionalLight {
+  color 0.95 0.9 1
+  direction 1.2 -1.2 -2
+  intensity 1.3
+  castShadows TRUE
+}
+DirectionalLight {
+  color 0.95 0.9 1
+  direction 0 0 -2
+  intensity 1.5
+  castShadows TRUE
+}
+DEF OBSERVER Observer {
+  controller "visual_tracking_supervisor"
+  controllerArgs ["--time" "60.0" "--bounds" "1.5" "4.0" "-3.0" "3.0"]
+  target "DUCK"
+}
+DEF NAO_ROBOT Nao {
+  supervisor TRUE
+  translation 0 0 0.34
+  rotation 0 1 0 0
+  customColor [
+    0.3 0.3 0.3
+  ]
+  cameraWidth 480
+  cameraHeight 360
+  cameraNoise 0.1
+  controller "visual_tracking"
+  headSlot [
+    DEF HEAD Transform {
+      translation 0 0 -0.05353
+      children [
+        DEF CAM_TOP Solid {
+          translation 0.05871 0 0.06364
+          rotation 0.573277 -0.573277 -0.585411 2.08235
+          name "cam_top"
+        }
+        DEF CAM_BOTTOM Solid {
+          translation 0.05071 0 0.01774
+          rotation 0.391132 -0.391132 -0.833085 1.75241
+          name "cam_bottom"
+        }
+      ]
+    }
+  ]
+}
+DEF DUCK RubberDuck {
+  translation 1.6713 0.826619 0.05
+  rotation 0 0 1 3.14159
+  scale 2.3
+  density -1
+}
+Nao {
+  translation 3.00542 1.05956 0.334
+  rotation 0 0 1 3.14159
+  name "NAO(1)"
+  controller "nao_dummy"
+}
+Nao {
+  translation 4.41242 -0.0165221 0.43400000000000005
+  rotation 0 0 1 3.14159
+  name "NAO(2)"
+  controller "nao_dummy"
+}
+Nao {
+  translation 2.92191 -1.18009 0.434
+  rotation 0 0 1 3.14159
+  name "NAO(3)"
+  controller "nao_dummy"
+}
+DEF Field Solid {
+  translation 0 0 -0.001
+  rotation 1 0 0 3.14159
+  children [
+    DEF SOCCER_FIELD Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "../protos/textures/FieldCarpetTexture.jpg"
+          ]
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 10.4 7.4 0.01
+      }
+    }
+  ]
+  boundingObject USE SOCCER_FIELD
+  locked TRUE
+}
+DEF FieldLines Solid {
+  rotation 1 0 0 3.14159
+  children [
+    DEF SOCCER_FIELD Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "../protos/textures/Field2020_transparent4096.png"
+          ]
+        }
+        transparency 0.5
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 10.4 7.4 0.01
+      }
+      castShadows FALSE
+    }
+  ]
+  name "field_lines"
+  locked TRUE
+}
+CardboardBox {
+  translation 6.60111 9.47797 0.3
+}
+CardboardBox {
+  translation 5.94498 9.52505 0.3
+  name "cardboard box(1)"
+}
+BunchOfSunFlowers {
+  translation 5.36144 3.18921 2.84217e-14
+}
+BunchOfSunFlowers {
+  translation 5.39479 -0.442478 3.10862e-14
+  name "bunch of sunflowers(1)"
+}
+FireExtinguisher {
+  translation 9.59881 -0.656324 0
+}
+FireExtinguisher {
+  translation 9.70108 3.3634 -7.10543e-15
+  name "fire extinguisher(1)"
+}
+OfficeChair {
+  translation 6.22065 -3.29509 -2.13163e-14
+  rotation 0 0 1 3.14159
+}
+OfficeChair {
+  translation 1.50285 -4.70201 -2.77112e-13
+  rotation 0 0 -1 -1.8325953071795862
+  name "office chair(1)"
+}
+Chair {
+  translation 5.71884 0.963049 2.13163e-14
+  rotation 0 0 1 -2.8797953071795863
+  color 1 0.333333 0.498039
+}
+Chair {
+  translation -0.86575 4.90198 3.6788e-21
+  rotation 0 0 1 -1.3089953071795861
+  name "chair(2)"
+  color 0.333333 0.666667 0
+}
+PaintBucket {
+  translation 1.99247 -0.450545 -5.55116e-16
+}
+Pedestrian {
+  translation 5.64353 -1.81828 1.27
+  rotation 0 0 1 3.14159
+  shirtColor 0 0.666667 1
+  pantsColor 1 1 0
+  shoesColor 1 0.666667 0
+}
+Ball {
+  translation 2 0 0.0325
+}
+Ball {
+  translation 1.32269 -0.427901 0.0325
+  name "ball(1)"
+  color 1 0 0
+}
+Ball {
+  translation 3.26028 -1.01348 0.0325
+  name "ball(2)"
+  color 0 0 1
+}
+Floor {
+  size 20 20
+  appearance Parquetry {
+  }
+}
+Armchair {
+  translation -0.354176 9.32921 0
+  rotation 0 0 1 -1.5707953071795862
+  color 0.666667 0.333333 0
+}
+CardboardBox {
+  translation 6.22364 9.46187 0.8999999999999997
+  name "cardboard box(2)"
+}
+Blackboard {
+  translation 4.49427 -9.78524 1.7
+  rotation 0 0 1 1.5708
+}
+Window {
+  translation 9.9316 7.32922 -1.5099e-14
+  rotation 0 0 -1 3.1415853071795863
+  size 0.2 3 5
+}
+Window {
+  translation 9.87844 1.33268 -9.76996e-15
+  rotation 0 0 1 -3.1415853071795863
+  name "window(3)"
+  size 0.2 3 5
+}
+Window {
+  translation 9.7694 -2.69819 -8.88178e-15
+  rotation 0 0 1 -3.1415853071795863
+  name "window(1)"
+  size 0.2 3 5
+}
+Window {
+  translation 9.76856 -6.67298 -3.37508e-14
+  rotation 0 0 1 -3.1415853071795863
+  name "window(2)"
+  size 0.2 3 5
+}
+Door {
+  translation 10.0039 4.32607 0
+  rotation 0 0 1 3.14159
+  size 0.2 1 5
+}
+Desk {
+  translation 1.5476 -4.06551 2.00728e-13
+  rotation 0 0 1 -1.5707953071795862
+  name "desk(1)"
+}
+Desk {
+  translation -0.901771 4.13472 2.14939e-13
+  rotation 0 0 1 -1.5707953071795862
+  name "desk(2)"
+}
+Desk {
+  translation 5.52359 -3.04688 1.77631e-15
+  rotation 0 0 1 3.14159
+}
+PottedTree {
+  translation -5.37739 4.07091 -3.4639e-14
+  name "potted tree(5)"
+}
+PottedTree {
+  translation -5.53996 -3.95751 -1.68754e-14
+  name "potted tree(4)"
+}
+PottedTree {
+  translation 4.4442 -4.00006 -7.90479e-14
+  name "potted tree(2)"
+}
+PottedTree {
+  translation 5.00905 3.94265 -1.68754e-14
+  name "potted tree(3)"
+}
+Pedestrian {
+  translation 5.30256 1.95887 1.2699999999999998
+  rotation 0 0 1 3.14159
+  name "pedestrian(2)"
+  shoesColor 1 0 0
+}
+Pedestrian {
+  translation 3.39298 3.86705 1.27
+  rotation 0 0 1 -1.5707953071795862
+  name "pedestrian(1)"
+  shirtColor 0 0.333333 1
+  pantsColor 1 0.333333 0
+}
+PottedTree {
+  translation -1.8462 -4.09217 -2.66456e-15
+}
+PottedTree {
+  translation 1.11432 4.02953 2.33591e-13
+  name "potted tree(1)"
+}
+RobotstadiumGoal {
+  translation 4.5 0 0
+  name "opponent_goal"
+}
+RobotstadiumGoal {
+  translation -4.5 0 0
+  rotation 0 0 1 3.1415
+  name "own_goal"
+}
+DEF BALL RobocupSoccerBall {
+  translation 0.4 1.7314666308470262e-05 0.02899730220415971
+  rotation -1 0 0 0.0006915364730499807
+}
+TrafficCone {
+  translation 1.95106 -2.21084 0
+}
+Wall {
+  translation 9.93666 5.32055 1.06582e-14
+  size 0.2 1 5
+}
+Wall {
+  translation 9.87418 3.32781 1.06582e-14
+  name "wall(5)"
+  size 0.2 1 5
+}
+Wall {
+  translation 9.794 -0.67813 -2.48689e-14
+  name "wall(6)"
+  size 0.2 1 5
+}
+Wall {
+  translation 9.77297 -4.69511 8.88188e-15
+  name "wall(7)"
+  size 0.2 1 5
+}
+Wall {
+  translation 9.76049 -8.65802 -7.99349e-15
+  name "wall(8)"
+  size 0.2 1 5
+}
+Wall {
+  translation 9.75353 -9.66897 5.4179e-14
+  name "wall(9)"
+  size 0.2 1 5
+}
+Wall {
+  translation 9.92766 9.30954 1.06582e-14
+  name "wall(4)"
+  size 0.2 1 5
+}
+Wall {
+  translation 0.0351821 9.91357 2.13164e-14
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(2)"
+  size 0.2 20 5
+}
+Wall {
+  translation 0.187368 -9.91361 2.13164e-14
+  rotation 0 0 1 -1.5707953071795862
+  name "wall(3)"
+  size 0.2 20 5
+}
+Wall {
+  translation -9.83678 -0.0523785 5.86198e-14
+  name "wall(1)"
+  size 0.2 20 5
+}
+Forest {
+  translation 20 0 0
+  shape [
+    -10 -20
+    10 -20
+    10 20
+    -10 20
+  ]
+}
